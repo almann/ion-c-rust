@@ -2,18 +2,18 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
-    let ionc_cmake = cmake::Config::new("ionc").build();
+    let ionc_path = cmake::Config::new("ionc").build();
 
-    println!("cargo:rustc-link-search=native={}/lib", ionc_cmake.display());
+    println!("cargo:rustc-link-search=native={}/lib", ionc_path.display());
     println!("cargo:rustc-link-lib=static=decNumber_static");
     println!("cargo:rustc-link-lib=static=ionc_static");
 
-    let header_path = format!("{}/include", ionc_cmake.display());
-    let main_header = format!("{}/ionc/ion.h", header_path);
+    let header_dir = format!("{}/include", ionc_path.display());
+    let main_header = format!("{}/ionc/ion.h", header_dir);
     let bindings = bindgen::Builder::default()
         .header(main_header)
         // make sure we can find all the relevant headers
-        .clang_arg(format!("-I{}", header_path))
+        .clang_arg(format!("-I{}", header_dir))
         // defined in IonC's CMake configuration
         .clang_arg("-DDECNUMDIGITS=34")
         // invalidate the build whenever underlying headers change
