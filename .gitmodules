@@ -1,0 +1,3 @@
+[submodule "ionc"]
+	path = ionc
+	url = https://github.com/almann/ion-c
