@@ -1,6 +1,6 @@
 # Ion C Bindings for Rust
 
-This is an experimental bindings for Amazon Ion in Rust using [Ion C][ion-c]
+This is an experimental set of bindings for for [Amazon Ion C][ion-c] in Rust.
 
 ## Development
 
